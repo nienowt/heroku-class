@@ -3,7 +3,7 @@
 
   repos.all = [];
 
-  // TODO: Refactor this ajax call into a get request to the proxy end point provided by server.js.
+  // done: Refactor this ajax call into a get request to the proxy end point provided by server.js.
   // repos.requestRepos = function(callback) {
   //   $.ajax({
   //     url: 'https://api.github.com/users/nienowt/repos' +
@@ -18,13 +18,9 @@
   // };
 
 repos.requestRepos = function(callback) {
-  $.ajax({
-    url: '/github/users/nienowt/repos' +
-       '?per_page=100' + '&sort=updated',
-    type: 'GET',
-    success: function(data, message, xhr) {
-      repos.all = data;
-    }
+  $.get('/github/users/nienowt/repos' + '?per_page=100' + '&sort=updated',
+   function(data, message, xhr) {
+    repos.all = data;
   }).done(callback);
 };
 
